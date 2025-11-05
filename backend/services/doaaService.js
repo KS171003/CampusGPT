@@ -299,6 +299,13 @@ const doaaProcedures = [
     steps: "Contact Respective Faculty. If issue persists, contact HoD.",
   },
   {
+    id: 21,
+    task: "Apply for academic docs",
+    keywords: ["academic", "document", "documents", "online"],
+    steps:
+      "Pass-out studenst can apply for the academic documents like Transcript/Migration certificate/Dublicate docs by visiting the following the below link: \n https://campus.thapar.edu/psc/public/EMPLOYEE/SA/c/TIET",
+  },
+  {
     id: 22,
     task: "CGPA Round-off Certificate",
     keywords: ["cgpa", "round off", "rounding", "certificate", "0.05"],
@@ -348,15 +355,27 @@ const doaaProcedures = [
     steps:
       "Contact the DoSA (Dean of Student Affairs) Office Only: dosaoffice@thapar.edu",
   },
-  // Add more entries as needed
+  {
+    id: 23,
+    task: "Extension of PHD",
+    keywords: ["extension", "phd"],
+    steps:
+      "If you are seeking extension for your PhD beyond permitted time (5Years for male candidate and 7 year for female candidate), submit the following documents along with the application form. \n 1. Copy of Half-yearly/quarterly progress report of last semester \n  2. Proof of published / accepted / communicated articles \n Dr. Bhupendrakumar Chudasama Associate Dean, Research and Development Cell Professor, \n School of Physics & Materials Science \n Thapar Institute of Engineering and Technology Patiala - 147004 PUNJAB, INDIA (M)\n  +91-9781966136",
+  },
+  {
+    id: 24,
+    task: "Regulation for PHD thesis submission",
+    keywords: ["regulation", "phd","thesis","submission"],
+    steps:
+      "Please note the Institute's regulations for PhD thesis submission:\n Male students must submit their theses to the Registrar within 5 years, while female/physically handicapped students have a 7-year timeframe, with a minimum of 2.5 years for regular and 3.5 years for part-time students from the date of admission.\nStudents are expected to complete their research within the normal period specified in the regulations. However, in cases of genuine hardship, the Dean, Research and Development Cell (DoRDC), based on the doctoral Committee's recommendations, may grant an extension of up to one year, if, at the end of the extended period, a student has completed a substantial part of the thesis or published research papers in refereed journals, the Chairperson of the Senate, upon DoRD's recommendation, may allow an additional one-year extension, providing detalled reasons for this special extension.\nFailure to submit the thesis within the stipulated period or to apply for an extension will result in automatic cancellation of registration. No extensions beyond seven years (for male students) and nine yoars (for female/physically handicapped students) will be granted under any circumstances. \nPhD students seeking an extension beyond the normal period must provide a detalled explanation for a 1/2-year extension. The Institute/Competent Authority reserves the right to deny extensions without proper/detalled explanations from the student/supervisor.\nNo extension requests will be considered beyond the extended period of seven years (for male students) and nine years (for female/physically handicapped students).",
+    },
+    {
+      task:"Scholarship information",
+      keywords:["scholarship info","scholarship","information","info"],
+      steps:" vsist this website  https://www.thapar.edu/admissions/pages/scholarships "
+    }
 ];
 
-// Export it if you put it in a separate file
-// export default doaaProcedures;
-
-// backend/services/doaaService.js
-
-// Paste the const doaaProcedures = [...] array here
 
 /**
  * Searches the DoAA procedures based on keywords in the prompt.
