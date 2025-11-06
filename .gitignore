@@ -14,3 +14,4 @@ node_modules/
 *.csv
 backend/timetable-data.json
 backend/subjects.json
+**/.env
