@@ -468,25 +468,29 @@ router.post("/", async (req, res) => {
       case "cafeteria_search": {
         try {
           const cafe = findCafeteria(intent.prompt); // Find a specific cafe
-    
+
           if (cafe) {
             // Found one! Send its data.
             return res.json({
               type: "cafeteria_info", // New type for the frontend
-              data: cafe // Send the whole cafe object
+              data: cafe, // Send the whole cafe object
             });
           } else {
             // No specific cafe found, list all available cafes
             const allCafes = listAllCafes();
             let response = "Sorry, I couldn't find that specific cafeteria. ";
             if (allCafes.length > 0) {
-              response += "Here are the ones I know:\n- " + allCafes.join('\n- ');
+              response +=
+                "Here are the ones I know:\n- " + allCafes.join("\n- ");
             }
             return res.json({ type: "simple_message", response: response });
           }
         } catch (err) {
           console.error("Cafeteria search error:", err.message);
-          return res.json({ type: "unknown", response: "Sorry, I encountered an error searching for cafeterias." });
+          return res.json({
+            type: "unknown",
+            response: "Sorry, I encountered an error searching for cafeterias.",
+          });
         }
       }
       // case "timetable": {
@@ -527,9 +531,9 @@ router.post("/", async (req, res) => {
           response: "Sorry, I couldn’t understand that. Please try again.",
         });
     }
-
+    
     const [results] = await db.promise().query(query);
-    res.json({ type: responseType, data: results });
+    res.status(400).json({ type: responseType, data: results });
   } catch (err) {
     console.error("API Error:", err.message);
     res.status(500).json({ error: "An error occurred on the server." });

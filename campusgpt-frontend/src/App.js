@@ -477,6 +477,7 @@ function App() {
 
     try {
       const res = await fetch(`${API_URL}/api/prompt`, { // <-- This line changed  method: "POST",
+        method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: userMessage.text }), // Use userMessage.text here
       });
