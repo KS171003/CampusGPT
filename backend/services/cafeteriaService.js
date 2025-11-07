@@ -4,7 +4,7 @@
 const cafeteriaData = [
   {
     name: "Pizza Nation",
-    keywords: ["pizza", "pizza nation","nation"],
+    keywords: ["pizza", "pizza nation","nation","menu"],
     menuImageUrl: "https://i.ibb.co/LzWrk0NY/pizza-Nation-menu.jpg", // <-- REPLACE
     scannerImageUrl: "https://i.ibb.co/JFHbQHtX/pizza-Nation-scanner.jpg" // <-- REPLACE
   },

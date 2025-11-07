@@ -4,6 +4,8 @@ import "./App.css"; // We'll create this CSS file next
 import ReactMarkdown from "react-markdown";
 import "leaflet/dist/leaflet.css";
 import MapComponent from "./MapComponent";
+import "./UserManualModal.css";
+import UserManualModal from "./UserManualModal";
 
 function App() {
   const [input, setInput] = useState("");
@@ -15,6 +17,7 @@ function App() {
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -53,7 +56,7 @@ function App() {
         "Sorry, received an empty message."
       );
     }
-    
+
     if (response.type === "subject_info" && response.data) {
       const item = response.data;
       return (
@@ -141,7 +144,7 @@ function App() {
         </div>
       );
     }
-    if (response.type === 'cafeteria_info' && response.data) {
+    if (response.type === "cafeteria_info" && response.data) {
       const info = response.data;
       return (
         <div className="cafeteria-card">
@@ -149,20 +152,32 @@ function App() {
           <div className="cafe-images">
             <div className="image-wrapper">
               <h5>Menu</h5>
-              <img 
-                src={info.menuImageUrl} 
-                alt={`${info.name} Menu`} 
-                className="chat-image" 
-                onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.insertAdjacentHTML('beforeend', '<p class="image-error">Menu image not available.</p>'); }}
+              <img
+                src={info.menuImageUrl}
+                alt={`${info.name} Menu`}
+                className="chat-image"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.parentElement.insertAdjacentHTML(
+                    "beforeend",
+                    '<p class="image-error">Menu image not available.</p>'
+                  );
+                }}
               />
             </div>
             <div className="image-wrapper">
               <h5>Scan to Pay</h5>
-              <img 
-                src={info.scannerImageUrl} 
-                alt={`${info.name} Scanner`} 
-                className="scanner-image" 
-                onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.insertAdjacentHTML('beforeend', '<p class="image-error">Scanner not available.</p>'); }}
+              <img
+                src={info.scannerImageUrl}
+                alt={`${info.name} Scanner`}
+                className="scanner-image"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.parentElement.insertAdjacentHTML(
+                    "beforeend",
+                    '<p class="image-error">Scanner not available.</p>'
+                  );
+                }}
               />
             </div>
           </div>
@@ -476,7 +491,8 @@ function App() {
     const API_URL = process.env.REACT_APP_API_URL;
 
     try {
-      const res = await fetch(`${API_URL}/api/prompt`, { // <-- This line changed  method: "POST",
+      const res = await fetch(`${API_URL}/api/prompt`, {
+        // <-- This line changed  method: "POST",
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: userMessage.text }), // Use userMessage.text here
@@ -536,6 +552,13 @@ function App() {
             disabled={isLoading}
           />
           <button
+            className="user-manual-button"
+            onClick={() => setIsModalOpen(true)}
+            type="button" // Good practice to prevent form submission if it's inside a form
+          >
+            ℹ️ Guide
+          </button>
+          <button
             type="button" // Important: not 'submit'
             onClick={openMapModal} // Open the modal
             className="nav-button"
@@ -578,6 +601,7 @@ function App() {
           </div>
         </div>
       )}
+      {isModalOpen && <UserManualModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }
