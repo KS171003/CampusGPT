@@ -172,9 +172,9 @@ async function analyzePrompt(prompt, db) {
     };
   }
 
-  if (lower.includes("mess") || lower.includes("menu")) {
-    return { type: "mess" };
-  }
+  // if (lower.includes("mess") || lower.includes("menu")) {
+  //   return { type: "mess" };
+  // }
 
   if (allCafeKeywords.some((kw) => lower.includes(kw))) {
     return { type: "cafeteria_search", prompt: prompt };
@@ -531,7 +531,7 @@ router.post("/", async (req, res) => {
           response: "Sorry, I couldn’t understand that. Please try again.",
         });
     }
-    
+
     const [results] = await db.promise().query(query);
     res.status(400).json({ type: responseType, data: results });
   } catch (err) {

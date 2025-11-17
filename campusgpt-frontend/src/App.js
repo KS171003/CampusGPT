@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import MapComponent from "./MapComponent";
 import "./UserManualModal.css";
 import UserManualModal from "./UserManualModal";
+import { motion } from "framer-motion";
 
 function App() {
   const [input, setInput] = useState("");
@@ -232,7 +233,7 @@ function App() {
       switch (response.type) {
         // Inside formatBotResponse -> switch statement
 
-        case "faculty": // Handles both single and multiple results now
+        case "faculty_info": // Handles both single and multiple results now
           // Handle no results found by backend
           if (!response.data || response.data.length === 0) {
             return "I couldn't find any faculty members matching that name.";
@@ -491,11 +492,11 @@ function App() {
     const API_URL = process.env.REACT_APP_API_URL;
 
     try {
-      const res = await fetch(`${API_URL}/api/prompt`, {
+      const res = await fetch(`${API_URL}/api/chat`, {
         // <-- This line changed  method: "POST",
         method: "post",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: userMessage.text }), // Use userMessage.text here
+        body: JSON.stringify({ message: userMessage.text }), // Use userMessage.text here
       });
 
       const data = await res.json();
@@ -526,6 +527,7 @@ function App() {
       <div className="chat-window">
         <div className="message-list">
           {messages.map((msg, index) => (
+            
             <div key={index} className={`message ${msg.from}`}>
               <div className="message-bubble">
                 {typeof msg.text === "string" ? <p>{msg.text}</p> : msg.text}

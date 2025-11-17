@@ -1,22 +1,40 @@
 import mysql from "mysql2";
+import fs from "fs";
 import dotenv from "dotenv";
 
-dotenv.config(); // ✅ ensure env vars are loaded before connection
+dotenv.config();
 
-const db = mysql.createConnection({
+let sslConfig = null;
+
+if (process.env.DB_SSL === "true") {
+  try {
+    sslConfig = {
+      ca: fs.readFileSync(process.env.DB_SSL_CA),
+      rejectUnauthorized: false,
+    };
+  } catch (err) {
+    console.error("⚠️ Failed to load SSL certificate:", err.message);
+  }
+}
+
+const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   port: process.env.DB_PORT,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false },
+  ssl: sslConfig,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-db.connect((err) => {
+db.getConnection((err, connection) => {
   if (err) {
-    console.error("❌ MySQL connection failed:", err.message);
+    console.error("❌ MySQL pool connection failed:", err.message);
   } else {
-    console.log("✅ MySQL connected successfully!");
+    console.log("✅ MySQL connection pool created successfully!");
+    connection.release();
   }
 });
 
