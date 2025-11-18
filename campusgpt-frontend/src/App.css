@@ -1131,3 +1131,375 @@ button.map-button.hidden {
     font-size: 32px; /* Larger 'X' is easier to tap with a thumb */
   }
 }
+
+/* Add this to App.css */
+
+.skeleton-bubble {
+  width: 200px; /* You can adjust */
+  height: 50px;
+  background-color: #e0e7ff;
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* side bar */
+/* src/App.css */
+
+/* --- Global & Fonts --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb; /* Light gray background for the whole page */
+}
+
+/* --- The New Dashboard Layout --- */
+.App-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 260px; /* Must be the same as .sidebar width */
+  width: calc(100% - 260px); /* Fill the rest of the screen */
+  height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Shared Header Style --- */
+/* --- Shared Header Style (Dark Chat) --- */
+.content-header {
+  padding: 24px 40px;
+  /* Darker border */
+  border-bottom: 1px solid #374151;
+  background: #1f2937; /* Dark background */
+}
+.content-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff; /* White text */
+}
+.content-header p {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  color: #9ca3af; /* Light gray text */
+}
+
+/* --- Chat Container Styling (Dark) --- */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #1f2937; /* Main dark background */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+}
+
+/* --- New Chat Bubbles --- */
+/* --- Message List (Dark) --- */
+.message-list {
+  flex-grow: 1;
+  padding: 24px 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #111827; /* Deepest dark for chat history */
+}
+
+/* --- New Chat Bubbles (Dark) --- */
+
+/* Bot Bubble (Dark) */
+.message.bot {
+  align-self: flex-start;
+}
+.message.bot .message-bubble {
+  background-color: #374151; /* Dark gray bubble */
+  color: #f3f4f6; /* Light text */
+  border-bottom-left-radius: 4px; /* "Tail" */
+}
+
+/* User Bubble (This is the same, just here for completeness) */
+.message.user {
+  align-self: flex-end;
+}
+.message.user .message-bubble {
+  background-color: #4f46e5; /* Brand purple */
+  color: #fff;
+  border-bottom-right-radius: 4px; /* "Tail" */
+}
+/* Bot Bubble */
+
+/* --- New Input Bar --- */
+
+.input-bar input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.input-bar button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-bar button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+.input-bar button:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+/* Icon buttons (Map, Guide) */
+
+/* --- New Input Bar (Dark) --- */
+.input-bar {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+  border-top: 1px solid #374151; /* Dark border */
+  background: #1f2937; /* Dark background */
+}
+
+.input-bar input {
+  flex-grow: 1;
+  border: 1px solid #4b5563; /* Gray border */
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-right: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #374151; /* Dark input field */
+  color: #f3f4f6; /* Light text */
+}
+
+.input-bar input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Icon buttons (Map, Guide) (Dark) */
+.icon-button {
+  background: transparent;
+  color: #9ca3af; /* Light gray icon */
+  border: none;
+  padding: 8px;
+  font-size: 1.5rem;
+  margin-right: 8px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+.icon-button:hover {
+  background-color: #374151; /* Dark gray hover */
+  color: #fff;
+}
+
+/* --- Map Tab & Placeholders --- */
+.map-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.map-wrapper {
+  flex-grow: 1;
+  background: #e5e7eb;
+  /* This ensures the Leaflet map fills the container */
+  width: 100%;
+  height: 100%;
+}
+.placeholder-container {
+  padding: 40px;
+  text-align: center;
+}
+.placeholder-container h1 {
+  color: #1f2937;
+}
+.placeholder-container p {
+  color: #6b7280;
+}
+.placeholder-container button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* --- All Your Modal CSS --- */
+/* (Keep all your existing modal CSS here for UserManual, Map, and FullscreenImage) */
+/* .modal-overlay { ... } */
+/* .map-modal-overlay { ... } */
+/* .fullscreen-image-overlay { ... } */
+
+/* --- Info Card Styles (for DOAA, etc.) --- */
+.info-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.info-card {
+  background: #1f2937; /* Dark card background */
+  border: 1px solid #374151; /* Dark border */
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease-in-out;
+}
+
+.info-card:hover {
+  transform: translateY(-5px); /* Lifts the card on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-card h3 {
+  margin-top: 0;
+  color: #c7d2fe; /* Light purple header */
+  font-size: 1.25rem;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 10px;
+}
+
+.info-card p {
+  color: #9ca3af; /* Light gray text */
+  line-height: 1.6;
+}
+
+.info-card-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.info-card-button:hover {
+  background-color: #4338ca;
+}
+
+/* Add this to App.css */
+.content-container {
+  padding: 40px;
+  height: 100vh;
+  overflow-y: auto;
+}
+/* In src/App.css */
+
+/* Add cursor: pointer to your existing .info-card style */
+.info-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  /* padding is removed, will be added to header/body */
+  transition: all 0.2s ease-in-out;
+  cursor: pointer; /* <-- ADD THIS */
+  overflow: hidden; /* <-- ADD THIS (crucial for animation) */
+}
+.info-card:hover {
+  /* (This is the same) */
+}
+
+/* NEW: Styles for the always-visible header */
+.info-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px; /* The padding from the old card */
+}
+
+.info-card h3 {
+  margin: 0;
+  color: #c7d2fe;
+  font-size: 1.25rem;
+  /* Removed border-bottom */
+}
+
+/* NEW: Style for the '+' / '−' icon */
+.info-card-icon {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #9ca3af;
+  transition: transform 0.3s ease;
+}
+.info-card.expanded .info-card-icon {
+  transform: rotate(180deg); /* Flips the '+' to a 'x' if you use a + icon */
+}
+
+/* NEW: Styles for the collapsible body */
+.info-card-body {
+  max-height: 0; /* By default, it's hidden */
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+}
+
+/* This is the magic! */
+.info-card.expanded .info-card-body {
+  max-height: 500px; /* Set to a height larger than any content */
+  opacity: 1;
+  transition: max-height 0.4s ease-in, opacity 0.3s ease-in;
+}
+
+/* Your existing paragraph style, now inside the body */
+.info-card p {
+  color: #9ca3af;
+  line-height: 1.6;
+  white-space: pre-line; /* This is still needed! */
+  padding: 0 24px 24px; /* Add padding here */
+  margin: 0;
+}
+
+/* Style for the "Go to Chat" button in placeholders */
+.placeholder-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4f46e5; /* Primary purple */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.placeholder-button:hover {
+  background-color: #4338ca; /* Darker purple on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

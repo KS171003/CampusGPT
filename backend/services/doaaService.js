@@ -1,4 +1,4 @@
-const doaaProcedures = [
+export const doaaProcedures = [
   {
     id: 1,
     task: "Group / Sub-group Change",

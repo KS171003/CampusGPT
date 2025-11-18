@@ -9,6 +9,8 @@ import * as certificateService from "../services/certificateService.js";
 import * as doaaService from "../services/doaaService.js";
 import * as facultyService from "../services/facultyService.js";
 import { getDispensaryInfo } from "../services/dispensaryService.js";
+// At the top with your other imports
+import { doaaProcedures } from "../services/doaaService.js";
 
 const router = express.Router();
 
@@ -50,6 +52,10 @@ function normalizeFacultyEntity(entities, message) {
   return null;
 }
 
+router.get("/doaa-procedures", (req, res) => {
+  // Just send the imported array as a JSON response
+  res.json(doaaProcedures);
+});
 /* ---------------------------------------------------
    CHAT ROUTE
 ---------------------------------------------------- */
