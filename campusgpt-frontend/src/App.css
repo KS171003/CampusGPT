@@ -1503,3 +1503,25 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* src/App.css */
+
+/* This fixes the scrolling issue for Cafeteria, DOAA, etc. */
+.content-container {
+  height: 100vh; /* Take up full height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-bottom: 40px; /* Add space at the bottom so the last card isn't cut off */
+  background-color: #f9fafb; /* Keep background consistent */
+}
+
+/* Optional: Make the scrollbar look nice (Dark theme) */
+.content-container::-webkit-scrollbar {
+  width: 8px;
+}
+.content-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content-container::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+}
